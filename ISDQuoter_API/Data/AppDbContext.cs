@@ -14,6 +14,7 @@ namespace ISDQuoter_API.Data
         public DbSet<PrintChargeMatrix> PrintChargeMatrix { get; set; }
         public DbSet<JobQuote> JobQuotes { get; set; }
         public DbSet<JobGraphic> JobGraphics { get; set; }
+        public DbSet<QuoteConfig> QuoteConfigs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -17,6 +17,17 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IQuoteService, QuoteService>();
 
+//Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularDevClient", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") // Angular dev server
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,6 +36,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Enable CORS
+app.UseCors("AllowAngularDevClient");
 
 app.UseHttpsRedirection();
 
